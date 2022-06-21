@@ -7,8 +7,8 @@
  module.exports = function copyMacroFiles(pathOrigin, pathDest) {
    // If you're installing this repo as a dependencies in a kobi app, copy some files in
    console.log('- Copy common macros');
-   const macroFolders = glob.sync(`${pathOrigin}/**/`);
- 
+   const macroFolders = glob.sync("templates/macros/");
+ console.log('macroFolders', pathOrigin, glob.sync("templates/macros/"))
    // Use fs.rmSync with NodeJS 14 in CI
    // fs.rmSync(pathDest, { recursive: true, force: true });
    exec(`rm -rf ${pathDest}`, () => {
