@@ -94,11 +94,3 @@ class MainNavigationToggle {
 		return siblings;
 	}
 }
-
-window.addEventListener( 'load', ( ) => {
-	const mainMenuComponent = document.querySelectorAll( `[id^="base-component-main-navigation"]` );
-	mainMenuComponent.forEach( ( menu ) => {
-		const mainNavigation = new MainNavigationMenu( menu );
-	} );
-	const jsActiveMenusButtons = document.querySelectorAll( '.js-active-menu' );
-} );
