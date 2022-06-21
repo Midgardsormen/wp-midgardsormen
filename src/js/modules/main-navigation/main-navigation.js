@@ -6,7 +6,7 @@
  * navigation support for dropdown menus.
  */
 
- class MainNavigationMenu {
+ export class MainNavigationMenu {
 	constructor( component ) {
 		this.component = component;
 		this.jsActiveMenusButtons = component.querySelectorAll( '.js-active-menu' );
