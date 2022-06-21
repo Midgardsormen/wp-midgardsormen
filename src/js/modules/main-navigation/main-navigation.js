@@ -29,7 +29,6 @@ class MainNavigationToggle {
 		this.init();
 	}
 	init() {
-		console.log('this', this)
 		this.component.addEventListener( 'click', ( ) => {
 			this.getClosestParent( this.component ).classList.toggle( 'active' );
 			this.toggleBtnAttributes();
