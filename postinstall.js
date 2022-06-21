@@ -1,7 +1,7 @@
  /* eslint-disable no-undef */
  /* eslint-disable no-console */
  const path = require('path');
- const copyMacroFiles = require('./scripts/macros-copy');
+ const copyMacroFiles = require('./templates/scripts/macros-copy');
  
  console.log('// templates postInstall //');
  
