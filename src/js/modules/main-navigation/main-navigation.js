@@ -29,6 +29,7 @@ class MainNavigationToggle {
 		this.init();
 	}
 	init() {
+		console.log('this', this)
 		this.component.addEventListener( 'click', ( ) => {
 			this.getClosestParent( this.component ).classList.toggle( 'active' );
 			this.toggleBtnAttributes();
@@ -93,11 +94,3 @@ class MainNavigationToggle {
 		return siblings;
 	}
 }
-
-window.addEventListener( 'load', ( ) => {
-	const mainMenuComponent = document.querySelectorAll( `[id^="base-component-main-navigation"]` );
-	mainMenuComponent.forEach( ( menu ) => {
-		const mainNavigation = new MainNavigationMenu( menu );
-	} );
-	const jsActiveMenusButtons = document.querySelectorAll( '.js-active-menu' );
-} );
