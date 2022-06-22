@@ -22,7 +22,7 @@
                 {% for item in menu.get_items %}
                     <li class=" base-main-navigation__item  {% if item.children %}base-main-navigation__item--has-children{% endif %} cat-{{ item.id }} base-main-navigation__item--child-of-{{item.menu_item_parent}} {% if item.current and item.children %} base-main-navigation__item--current{% endif %}">
                         <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-                        {% include "macros/main-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level} %}
+                        {% include "templates/macros/common/main-navigation/menu.twig" with {'item': item, 'items': item.children, 'level': level} %}
                     </li>
                 {% endfor %}
             </ul>
