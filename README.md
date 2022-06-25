@@ -1,2 +1,2 @@
 # wp-midgardsormen
-package dependancies for wp-midgardormen base theme
+package dependancies for wp-midgardormen Midgard theme

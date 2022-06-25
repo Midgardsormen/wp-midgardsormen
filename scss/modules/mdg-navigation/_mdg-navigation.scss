@@ -1,6 +1,6 @@
 @import "./includes/variables";
 
-.base-main-navigation{
+.mdg-main-navigation{
     background-color: $bg-menu;
     &__open-btn{
         position: relative;
@@ -60,7 +60,7 @@
             background-color: $bg-menu;
             overflow: visible;
             &--horizontal {
-                .base-main-navigation{
+                .mdg-main-navigation{
                     &__list {
                         display: flex;
                         justify-content: flex-start;
@@ -79,7 +79,7 @@
                         position: relative;
                         margin: 0;
                         &:not(.active):hover {
-                            .base-main-navigation {
+                            .mdg-main-navigation {
                                 &__item-toggle-btn{
                                     transform: rotate(180deg);
                                 }
@@ -115,7 +115,7 @@
                         a{
                             color: $color-submenu;
                         }
-                        .base-main-navigation{
+                        .mdg-main-navigation{
                             &__item{
                                 flex-direction: column;
                             }
@@ -123,7 +123,7 @@
                                 display: none;
                             }
                         }
-                        .base-main-navigation__sub-menu{
+                        .mdg-main-navigation__sub-menu{
                             max-height: 1000px;
                             position: relative;
                             width: auto;
@@ -217,7 +217,7 @@
         $levels:'0' $bu-050,'1' $bu-075,'2' $bu-100,'3' $bu-125,'4' $bu-150,'5' $bu-175;
         @each $level, $padding in $levels {
         &--level-#{$level}{
-            .base-main-navigation__item {
+            .mdg-main-navigation__item {
                 a{
                     padding-left: #{$padding};
                 }
