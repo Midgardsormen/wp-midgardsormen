@@ -1,5 +1,3 @@
-@import "./includes/variables";
-
 .mdg-main-navigation{
     &__layout{
         @include mdg-container(true);
