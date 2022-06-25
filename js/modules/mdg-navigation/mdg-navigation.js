@@ -6,7 +6,7 @@
  * navigation support for dropdown menus.
  */
 
- export default class MainNavigationMenu {
+ export default class MdgNavigationMenu {
 	constructor( component ) {
 		this.component = component;
 		this.jsActiveMenusButtons = component.querySelectorAll( '.js-active-menu' );
@@ -14,11 +14,11 @@
 	}
 	init() {
 		this.jsActiveMenusButtons.forEach( ( menuButton ) => {
-			const mainNavigationToggleButton = new MainNavigationToggle( menuButton );
+			const mdgNavigationToggleButton = new MdgNavigationToggle( menuButton );
 		} );
 	}
 }
-class MainNavigationToggle {
+class MdgNavigationToggle {
 	constructor( component ) {
 		this.component = component;
 		this.classToTarget = component.dataset.listtarget;
@@ -39,7 +39,7 @@ class MainNavigationToggle {
 		} );
 	}
 	getClosestParent( e, liOnly ) {
-		return e.closest( 'li' ) ? e.closest( 'li' ) : ! liOnly ? e.closest( 'div.base-main-navigation' ) : false;
+		return e.closest( 'li' ) ? e.closest( 'li' ) : ! liOnly ? e.closest( 'div.mdg-main-navigation' ) : false;
 	}
 	toggleBtnAttributes() {
 		this.component.classList.toggle( 'active' );

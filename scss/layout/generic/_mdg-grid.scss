@@ -1,4 +1,4 @@
-.grid-container {
+.mdg-grid-container {
     column-gap: var(--global--spacing-unit);
     display: grid;
     grid-auto-rows: minmax(auto,auto);
@@ -7,23 +7,23 @@
 
 @for $i from 1 through 12 {
 
-    .grid-col-#{$i} {
+    .mdg-grid-col-#{$i} {
         grid-column-end: span #{$i}
     }
     $sizes: xs, s, m, l, xl, xxl;
     @each $size in $sizes {
         @include media(size-#{$size}) {
-            .grid-col-#{$size}-#{$i} {
+            .mdg-grid-col-#{$size}-#{$i} {
                 grid-column-end: span #{$i}
             }
         }
     }
-    .grid-col-start-#{$i} {
+    .mdg-grid-col-start-#{$i} {
         grid-column-start: grid-col-#{$i}-start
     }
     @each $size in $sizes {
         @include media(size-#{$size}) {
-            .grid-col-start-#{$size}-#{$i} {
+            .mdg-grid-col-start-#{$size}-#{$i} {
                 grid-column-end: span #{$i}
             }
         }
