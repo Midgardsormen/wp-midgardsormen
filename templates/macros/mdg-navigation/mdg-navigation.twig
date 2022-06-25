@@ -1,5 +1,12 @@
 {% macro mdg_navigation(config) %}
-    
+ 
+{# config options : {
+	"menuId": {object} => name of the menu,
+	"type": "string" => menu type, "top", "main", "footer" ,
+	"display": "string" => menu orientation (for main menu only) "horizontal", "vertical",
+    "allowChildren": boolean => accept or not submenus
+    "rich": boolean => submenus display mode ( true : rich , false : columns) 
+} #}
 
 {% if config.menuId %}
 {% set menu = config.menuId %}
@@ -15,8 +22,10 @@
                 {% for item in menu.get_items %}
                     <li class=" mdg-{{ config.type }}-navigation__item  {% if item.children %}mdg-{{ config.type }}-navigation__item--has-children{% endif %} cat-{{ item.id }} mdg-{{ config.type }}-navigation__item--child-of-{{item.menu_item_parent}} {% if item.current and item.children %} mdg-{{ config.type }}-navigation__item--current{% endif %}">
                         <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-                        {% include "templates/macros/common/mdg-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level, 'type': config.type, 'rich': config.rich} %}
-                    </li>
+                        {% if config.allowChildren %}
+                            {% include "templates/macros/common/mdg-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level, 'type': config.type, 'rich': config.rich} %}
+                        {% endif %}
+                        </li>
                 {% endfor %}
             </ul>
     
