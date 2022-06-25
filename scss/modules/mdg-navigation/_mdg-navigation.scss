@@ -1,6 +1,9 @@
 @import "./includes/variables";
 
 .mdg-main-navigation{
+    &__layout{
+        @include mdg-container(true);
+    }
     background-color: $bg-menu;
     &__open-btn{
         position: relative;
