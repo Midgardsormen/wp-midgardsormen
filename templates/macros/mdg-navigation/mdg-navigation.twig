@@ -1,22 +1,15 @@
-{% macro mdg_navigation(menu, display, location ) %}
+{% macro mdg_navigation(config) %}
     
 
-{# <?php
-  $menu_name = 'menu-1';
-  $menu_display = 'horizontal';
-  $locations = get_nav_menu_locations();
-  $menu = wp_get_nav_menu_object( $locations[ $menu_name ] );
-  $menuitems = wp_get_nav_menu_items( $menu->term_id, array( 'order' => 'DESC' ) );
-
-?> #} 
-{% if menu %}
+{% if config.menuId %}
+{% set menu = config.menuId %}
 {% set level = 0 %}
 <div id="mdg-component-main-navigation-{{ menu.slug }}" class="mdg-main-navigation ">
     <div class="mdg-main-navigation__layout mdg-container mdg-container--limited grid-container">
         <button  class="js-active-menu js-active-overlay mdg-main-navigation__open-btn" aria-expanded="false" aria-controls="{{ menu.slug }}" data-listtarget="{{ menu.slug }}"  aria-label="Ouvrir ou Fermer le {{ menu.name }}">
                 <span class="dashicons dashicons-menu menu-icon-open">&nbsp;</span><span class="dashicons dashicons-no menu-icon-close">&nbsp;</span>
         </button>     
-        <nav id="{{ menu.slug }}"  class=" mdg-main-navigation__menu js-toggle-menu {{ menu.slug }} mdg-main-navigation__menu--{{ display }} grid-col-12 grid-col-12 "  aria-label="{{ menu.name }}" role="navigation" >
+        <nav id="{{ menu.slug }}"  class=" mdg-main-navigation__menu js-toggle-menu {{ menu.slug }} mdg-main-navigation__menu--{{ config.display }} grid-col-12 grid-col-12 "  aria-label="{{ menu.name }}" role="navigation" >
        
             <ul class="mdg-main-navigation__list">
                 {% for item in menu.get_items %}
