@@ -1,3 +1,54 @@
+
+@mixin mdg-font-size( $sizevalue, $lineheightvalue  ) {
+    $sizes: 
+        "xs" $bu-075, 
+        "s" 0.875rem, 
+        "m" $bu-100, 
+        "l" 1.125rem, 
+        "xl" $bu-125;
+        
+    @each $size, $fontsize in $sizes {
+        @if $sizevalue == $size {
+            font-size: $fontsize;
+        }
+    }
+    @if $lineheightvalue == 's' {
+        line-height: 0.875;
+    } @else if $lineheightvalue == 'm' {
+        line-height: 1;
+    } @else if $lineheightvalue == 'l' {
+        line-height: 1.125;
+    }
+}
+
+@mixin mdg-container( $limited : false ) {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $bu-100;
+    padding-right: $bu-100;
+    width: 100%;
+
+    $sizes: 
+        "xs" 100% $bu-100, 
+        "s" 100% $bu-150, 
+        "m" 100% $bu-200, 
+        "l" 64rem $bu-250, 
+        "xl" 80rem, 
+        "xxl" 100rem;
+        
+    @each $device, $size, $padding in $sizes {
+        @include media(size-#{$device}) {
+            padding-left: #{$padding};
+            padding-right: #{$padding};
+            @if $limited {
+                max-width:#{$size};
+            }
+        }
+    }
+}
+
 // Center block
 @mixin center-block {
 	display: block;

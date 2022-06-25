@@ -1,0 +1,35 @@
+
+.mdg-footer-navigation {
+	color: $color-footer-menu;
+	&__list{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		list-style: none;
+		padding-left: 0;
+		gap: $bu-075;
+		@include media(size-l) {
+			justify-content: flex-end;
+		}	
+	}
+	&__item{
+		display: inline;
+		// This is to prevent hover styles from overlapping when the menu wraps.
+		line-height: 1;
+		a {
+			color: $color-footer-menu;
+			text-decoration-color:transparent ;
+			&:link,
+			&:visited,
+			&:active{
+				color: $color-footer-menu-active;
+			}
+			&:hover,
+			&:focus{
+				text-decoration-color:$color-footer-menu-active ;			
+			}
+		}
+	}
+}
+
+
