@@ -4,18 +4,18 @@
 {% if config.menuId %}
 {% set menu = config.menuId %}
 {% set level = 0 %}
-<div id="mdg-component-main-navigation-{{ menu.slug }}" class="mdg-main-navigation ">
-    <div class="mdg-main-navigation__layout mdg-container mdg-container--limited grid-container">
-        <button  class="js-active-menu js-active-overlay mdg-main-navigation__open-btn" aria-expanded="false" aria-controls="{{ menu.slug }}" data-listtarget="{{ menu.slug }}"  aria-label="Ouvrir ou Fermer le {{ menu.name }}">
+<div id="mdg-component-{{ config.type }}-navigation-{{ menu.slug }}" class="mdg-{{ config.type }}-navigation ">
+    <div class="mdg-{{ config.type }}-navigation__layout mdg-container mdg-container--limited grid-container">
+        <button  class="js-active-menu js-active-overlay mdg-{{ config.type }}-navigation__open-btn" aria-expanded="false" aria-controls="{{ menu.slug }}" data-listtarget="{{ menu.slug }}"  aria-label="Ouvrir ou Fermer le {{ menu.name }}">
                 <span class="dashicons dashicons-menu menu-icon-open">&nbsp;</span><span class="dashicons dashicons-no menu-icon-close">&nbsp;</span>
         </button>     
-        <nav id="{{ menu.slug }}"  class=" mdg-main-navigation__menu js-toggle-menu {{ menu.slug }} mdg-main-navigation__menu--{{ config.display }} grid-col-12 grid-col-12 "  aria-label="{{ menu.name }}" role="navigation" >
+        <nav id="{{ menu.slug }}"  class=" mdg-{{ config.type }}-navigation__menu js-toggle-menu {{ menu.slug }} mdg-{{ config.type }}-navigation__menu--{{ config.display }} grid-col-12 grid-col-12 "  aria-label="{{ menu.name }}" role="navigation" >
        
-            <ul class="mdg-main-navigation__list">
+            <ul class="mdg-{{ config.type }}-navigation__list">
                 {% for item in menu.get_items %}
-                    <li class=" mdg-main-navigation__item  {% if item.children %}mdg-main-navigation__item--has-children{% endif %} cat-{{ item.id }} mdg-main-navigation__item--child-of-{{item.menu_item_parent}} {% if item.current and item.children %} mdg-main-navigation__item--current{% endif %}">
+                    <li class=" mdg-{{ config.type }}-navigation__item  {% if item.children %}mdg-{{ config.type }}-navigation__item--has-children{% endif %} cat-{{ item.id }} mdg-{{ config.type }}-navigation__item--child-of-{{item.menu_item_parent}} {% if item.current and item.children %} mdg-{{ config.type }}-navigation__item--current{% endif %}">
                         <a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-                        {% include "templates/macros/common/mdg-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level} %}
+                        {% include "templates/macros/common/mdg-navigation/include/menu.twig" with {'item': item, 'items': item.children, 'level': level, 'type': config.type, 'rich': config.rich} %}
                     </li>
                 {% endfor %}
             </ul>
