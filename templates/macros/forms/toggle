@@ -1,0 +1,16 @@
+{# config options : {
+	"name": "string" => name of the input,
+	"id": "string" => input ID and label 'for' attribute,
+	"class": "string" => input classes,
+    "value": "string" => toggle value, displayed also in label 
+} #}
+
+
+{% macro mdg_toggle(config) %}
+    <div class="mdg-toggle">
+        <input type="checkbox" name="{{ config.name }}" id="{{ config.id }}" class="mdg-toggle__input {{ config.class }}" value="{{ config.value }}" />
+        <label class="mdg-toggle__label" for="'{{ config.id }}">
+            <span class="mdg-toggle__toggle">&nbsp;</span>{{ config.value }}
+        </label>
+    </div>
+{% endmacro %}
