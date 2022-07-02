@@ -1,0 +1,47 @@
+
+.mdg-top-navigation {
+	color: $color-top-menu;
+	height: $bu-250;
+	overflow: hidden;
+	&__menu{
+		height: 51px;
+		-webkit-overflow-scrolling: touch;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	&__list{
+		list-style: none;
+		padding-left: $bu-075;
+		gap: $bu-075;
+		height: $bu-250;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		@include media(size-l) {
+			justify-content: flex-end;
+		}	
+	}
+	&__item{
+		flex: none;
+		display: inline;
+		line-height: 1;
+		&:last-child{
+			padding-right: $bu-100;
+		}
+		a {
+			color: $color-top-menu;
+			text-decoration-color:transparent ;
+			&:hover,
+			&:focus{
+				text-decoration-color:$color-top-menu-active ;			
+			}
+		}
+		&--curent{
+			a{
+				text-decoration-color:$color-top-menu-active ;
+			}
+		}
+	}
+}
+
+
