@@ -1,0 +1,128 @@
+.mdg-toggle {
+  --offset: #{$bu-025};
+  --toggleSize: #{$bu-150};
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  margin-bottom: $bu-100;
+
+  $sizes: 
+  "xs" $bu-125 $bu-075, 
+  "s" $bu-125 $bu-100, 
+  "m" $bu-150 $bu-125, 
+  "l" $bu-150 $bu-150, 
+  "xl" $bu-175 $bu-175,
+  "xxl" $bu-200 $bu-200;
+  
+  @each $size, $toggleSizeMobile, $toggleSizeDesktop in $sizes {
+    &--#{$size}{
+      --toggleSize: #{$toggleSizeMobile};
+      @include media(size-m) {
+        --toggleSize: #{$toggleSizeDesktop};
+      }
+    }
+  }
+  cursor: pointer;
+  gap: 1ch;
+  &__label{
+    cursor: pointer;
+    display: flex;
+    gap: $bu-100;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  &__input{
+    position: absolute;
+    clip: rect(1px 1px 1px 1px);
+    padding: 0;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  &__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: content-box;
+    width: calc(var(--toggleSize) * 2 + var(--offset) * 2);
+    height: calc(var(--toggleSize) + var(--offset) * 2);
+    position: relative;
+    border-radius: 100vw;
+    background-color: transparent;
+    transition: 250ms;
+    overflow: hidden;
+    &:before {
+      content: "";
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: var(--offset);
+      box-sizing: border-box;
+      width: var(--toggleSize);
+      height: var(--toggleSize);
+      border-radius: 50%;
+      background-color: $mdg-white;
+      transform: translate(0, -50%);
+      will-change: transform;
+      transition: inherit;
+    }
+    &:after {
+      content: "\f158";
+      color: $mdg-disabled;
+      font-family: "dashicons";
+      font-size: var(--toggleSize);
+      line-height: 1;
+      text-align: center;
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      background: $mdg-bg-disabled;
+      will-change: transform;
+      transition: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-left: $bu-025;
+      padding-right: $bu-025;
+    }
+  }
+  &__input:checked + .mdg-toggle__label{
+    .mdg-toggle__toggle {
+      &:before {
+        transform: translate(100%, -50%);
+      }
+      &:after{
+        content: "\f147";
+        color: $mdg-success;
+        font-family: "dashicons";
+        background-color: $mdg-bg-success;
+        justify-content: flex-start;
+      }
+    }
+  }
+  &__input:focus + .mdg-toggle__label{
+    .mdg-toggle__toggle {
+      outline: 2px dotted #212121;
+      outline: 2px auto -webkit-focus-ring-color;
+      outline-offset: 3px;  
+    }
+  }
+  &__input:focus,
+  &__input:focus:not(:focus-visible)  + .mdg-toggle__label .mdg-toggle__toggle {
+    outline: 0;
+  }
+
+  &__input[disabled] + .mdg-toggle__label .mdg-toggle__toggle,
+  &__input:disabled + .mdg-toggle__label .mdg-toggle__toggle {
+    opacity: 0.6;
+    filter: grayscale(40%);
+    cursor: not-allowed;
+  }
+}
+

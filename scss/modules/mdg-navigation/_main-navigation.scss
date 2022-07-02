@@ -5,6 +5,10 @@
     background-color: $bg-menu;
     &__open-btn{
         position: relative;
+        height: $bu-250;
+        background-color: $bg-menu-button;
+        border-color: $bg-menu-button-border;
+        color: $color-menu-button;
         @include media(size-l) {
             display: none;
         }        
@@ -16,11 +20,14 @@
         }
         &.active{
             position: fixed;
-            top: $bu-100;
-            right: $bu-100;
+            top: 0;
+            right: 0;
             z-index: 4;
+            background-color: $bg-menu-button-active;
+            border-color: $bg-menu-button-border-active;
+            color: $color-menu-button-active;
             .customize-support &{
-                margin-top: 40px;
+                margin-top: 46px;
                 @include media(size-l) {
                     margin-top: 0;
                 }
@@ -83,6 +90,9 @@
                             .mdg-main-navigation {
                                 &__item-toggle-btn{
                                     transform: rotate(180deg);
+                                    background-color: $bg-menu-toggle-active;
+                                    border-color: $bg-menu-toggle-border-active;
+                                    color: $color-menu-toggle-active;                                    
                                 }
                                 &__sub-menu{
                                     max-height: 1000px;
@@ -97,6 +107,9 @@
                         position: relative;
                         top: auto;
                         right: auto;
+                        background-color: $bg-menu-toggle;
+                        border-color: $bg-menu-toggle-border;
+                        color: $color-menu-toggle;
                     }
                     &__sub-menu{
                         left: 0;
@@ -189,6 +202,9 @@
             transition: visibility .3s 0s,-webkit-transform .3s cubic-bezier(.77,.2,.05,1);
             &.active{
                 transform: rotate(180deg);
+                background-color: $bg-menu-toggle-active;
+                border-color: $bg-menu-toggle-border-active;
+                color: $color-menu-toggle-active;               
             }
             span{
                 font-size: $bu-100;
