@@ -1,0 +1,34 @@
+{% macro mdg_button(config) %}
+ 
+{# config options : {
+    "label": "string" => button label",
+	"id": "string" => button id",
+	"class": "string" => button class",
+    "size": "s,m,l,xl",
+    "style": "string" => button style ("full" or "bordered")",
+    "level": "string" => button level ("primary" or "secondary")",
+	"link": "string" => if empty the tag is "button" else the tag is a with this value as href,
+	"icon": {
+        "iconClass":"string" => dashicon or fontAwesome (if intsalled) classes",
+        "iconPosition":"string" => "left" or "right",
+    },
+    otherAttributes : {object} => object with other attributes like disbled, target, data-attr, etc...{
+        "target": "_blank",
+        "data-test" : "test",
+        "disabled" : "true"
+    }
+} #}
+
+    {% if config %}
+        {% set otherAttributes %}
+            {% for key, value  in config.otherAttributes %} {% if key != "id" and key != "class" and key != "href" %} {{key}} = {{value}} {% endif %}{% endfor %}
+        {% endset %}
+
+        <{{config.link ? "a href=" ~ config.link : "button"}} {{ (config.id) ? 'id=' ~ config.id : '' }} class="mdg-button mdg-button--{{config.size|default("m") }} mdg-button--{{config.level|default("primary") }} mdg-button--{{config.style|default("full") }} {% if config.icon %}mdg-button__icon mdg-button__icon--{{config.icon.iconPosition|default("left")}} {% endif %} {{config.class}}" {{ otherAttributes }} > 
+        {% if config.icon.iconClass %}
+            <i class="mdg-button__icon {{ config.icon.iconClass }}"></i>
+        {% endif %}
+            <span class="mdg-button__label">{{ config.label }}</span>
+        </{{config.link ? "a" : "button"}}>
+    {% endif %}
+{% endmacro %}

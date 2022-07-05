@@ -60,3 +60,24 @@
 @mixin column-width($numberColumns: 3) {
 	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
+
+@mixin mdg-button-base() {
+    border: $bd-size-btn solid;
+    border-color: $bd-primary-btn;
+    border-radius: $bd-radius-btn;
+    background: $bg-primary-btn;
+    color: $color-primary-btn;
+    line-height: 1;
+    padding: $bu-050 $bu-100 $bu-075;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $bu-050;
+    @include mdg-font-size('m', 'l');
+    cursor: pointer;
+    &:hover, &:active {
+        border-color: $bd-secondary-btn;
+        background: $bg-secondary-btn;
+        color: $color-secondary-btn;
+    }
+}

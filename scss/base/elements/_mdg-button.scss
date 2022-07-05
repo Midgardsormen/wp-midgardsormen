@@ -1,0 +1,51 @@
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.mdg-button,
+.wp-block-button__link {
+    @include mdg-button-base();
+}
+.mdg-button{
+    &--secondary{
+        border-color: $bd-secondary-btn;
+        color: $color-secondary-btn;
+        background-color: $bg-secondary-btn;
+        &.mdg-button--bordered{
+            border-color: $bd-secondary-bordered-btn;
+            color: $color-secondary-bordered-btn;
+            background-color: $bg-secondary-bordered-btn;
+            &:hover, &:active {
+                border-color: $bd-secondary-bordered-btn-hover;
+                background-color: $bg-secondary-bordered-btn-hover;
+                color: $color-secondary-bordered-btn-hover;
+            }        
+        }
+    }
+    $sizes:  "xs" $bu-025 0.125rem, "s" $bu-025 $bu-025, "m" $bu-050 $bu-050, "l" $bu-050 $bu-050, "xl" $bu-050;
+    @each $fontsize, $gap, $basePadding in $sizes {
+        &--#{$fontsize}{
+            padding: #{$basePadding} calc(#{$basePadding} * 2) calc(#{$basePadding} + #{$bu-025});
+            gap: #{$gap};
+            @include mdg-font-size(#{$fontsize}, 'l');
+        }
+        .mdg-button__icon{
+            @include mdg-font-size(#{$fontsize}, 'l');
+        }
+    }
+}
+
+.is-style-outline .wp-block-button__link, 
+.is-style-outline .wp-block-button__link:not(.has-background), 
+.is-style-outline .wp-block-button__link:not(.has-text-color), 
+.mdg-button--bordered{
+    border-color: $bd-primary-bordered-btn;
+    background-color: $bg-primary-bordered-btn;
+    color: $color-primary-bordered-btn;
+    &:hover, &:active {
+        border-color: $bd-primary-bordered-btn-hover;
+        background-color: $bg-primary-bordered-btn-hover;
+        color: $color-primary-bordered-btn-hover;
+    }
+}
+
