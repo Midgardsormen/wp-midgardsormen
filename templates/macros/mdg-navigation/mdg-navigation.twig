@@ -14,7 +14,7 @@
 <div id="mdg-component-{{ config.type }}-navigation-{{ menu.slug }}" class="mdg-{{ config.type }}-navigation ">
     <div class="mdg-{{ config.type }}-navigation__layout">
         {% if config.type == "main" %}
-            <button  class="js-active-menu js-active-overlay mdg-{{ config.type }}-navigation__open-btn" aria-expanded="false" aria-controls="{{ menu.slug }}" data-listtarget="{{ menu.slug }}"  aria-label="Ouvrir ou Fermer le {{ menu.name }}">
+            <button  class="js-active-menu mdg-{{ config.type }}-navigation__open-btn" aria-expanded="false" aria-controls="{{ menu.slug }}" data-listtarget="{{ menu.slug }}"  aria-label="Ouvrir ou Fermer le {{ menu.name }}">
                     <span class="dashicons dashicons-menu menu-icon-open">&nbsp;</span><span class="dashicons dashicons-no menu-icon-close">&nbsp;</span>
             </button>
         {% endif %}
