@@ -6,6 +6,9 @@
  * navigation support for dropdown menus.
  */
 
+import Overlay from "../mdg-overlay";
+
+
  export default class MdgNavigationMenu {
 	constructor( component ) {
 		this.component = component;
@@ -25,7 +28,7 @@ class MdgNavigationToggle {
 		this.menuToTarget = this.getClosestParent( component ).querySelector( `.${ this.classToTarget }` );
 		this.ariaExtandedValue = component.getAttribute( 'aria-expanded' ) === 'true' ? 'false' : 'true';
 		this.parentSiblings = this.getSiblings( this.getClosestParent( component ) );
-
+		this.overlay = new Overlay();
 		this.init();
 	}
 	init() {
@@ -36,6 +39,7 @@ class MdgNavigationToggle {
 			this.cleanAllChildrenAttributes();
 			this.cleanAllSiblingsAttributes();
 			this.parentSiblings = this.getSiblings( this.getClosestParent( this.component ) );
+			if(this.component.classList.contains('mdg-main-navigation__open-btn')) this.overlay.toggleOverlay();
 		} );
 	}
 	getClosestParent( e, liOnly ) {
