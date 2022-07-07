@@ -1,0 +1,69 @@
+{% import "/templates/macros/mdg-elements/mdg-button.twig" as mdg_button %}
+
+{% macro mdg_drawer(config) %}
+ 
+{# config options : {
+    "title": "string" => drawer title label",
+	"id": "string" => drawer id",
+	"class": "string" => drawer class",
+    "role": ""string" => drawer aria role"
+    "actions" : {object} => object with buttons config...{
+        "cta-1": {
+                "label": "string" => button label",
+                "type": string" => "button or link",
+                "link" : string" => "button or link href",
+            	"id": "string" => button id",
+	            "class": "string" => button class",
+                    otherAttributes : {object} => object with other attributes like disbled, target, data-attr, etc...{
+                    "target": "_blank",
+                    "data-test" : "test",
+                    "disabled" : "true"
+                }
+        },
+        "cta-2": {
+                "label": "string" => button label",
+                "type": string" => "button or link",
+                "link" : string" => "button or link href",
+            	"id": "string" => button id",
+	            "class": "string" => button class",
+                    otherAttributes : {object} => object with other attributes like disbled, target, data-attr, etc...{
+                    "target": "_blank",
+                    "data-test" : "test",
+                    "disabled" : "true"
+                }
+        },
+    }
+} #}
+
+<div class="mdg-drawer" role="{{config.role|"document"}}">
+    <div class="mdg-drawer__header">
+        <h2 class="mdg-drawer__title">{{config.title}}</h2>
+        <button class="mdg-drawer__close js-close-drawer" type="button" role="button">
+            <span class="mdg-drawer__close-text">Fermer</span>
+        </button>
+    </div>
+    <div class="mdg-drawer__body">
+        <div class="mdg-drawer__content">
+
+        </div>
+    </div>
+    <div class="mdg-drawer__footer">
+        {% set buttonConfig = {
+            "id": "button_test",
+            "class":"top",
+            "size":"m",
+            "level": "secondary",
+            "label": "ceci est un bouton",
+            "icon": {
+                "iconClass":"dashicons dashicons-calendar"
+            },
+            "otherAttributes" : {
+                "target": "_blank",
+                "data-test" : "test",
+                "disabled" : "true"
+            }
+        } %}
+        {{ button.mdg_button(buttonConfig) }}
+    </div>
+</div>
+{% endmacro %}
