@@ -1,7 +1,8 @@
-{% import "/templates/macros/mdg-elements/mdg-button.twig" as mdg_button %}
 
-{% macro mdg_drawer(config) %}
- 
+{% macro mdg_drawer(config, content) %}
+
+{% import "/templates/macros/common/mdg-elements/mdg-button.twig" as button %}
+
 {# config options : {
     "title": "string" => drawer title label",
 	"id": "string" => drawer id",
@@ -35,35 +36,35 @@
     }
 } #}
 
-<div class="mdg-drawer" role="{{config.role|"document"}}">
-    <div class="mdg-drawer__header">
-        <h2 class="mdg-drawer__title">{{config.title}}</h2>
-        <button class="mdg-drawer__close js-close-drawer" type="button" role="button">
-            <span class="mdg-drawer__close-text">Fermer</span>
-        </button>
-    </div>
-    <div class="mdg-drawer__body">
-        <div class="mdg-drawer__content">
-
+<div class="mdg-drawer" role="dialog" id="{{config.id}}">
+    <div class="mdg-drawer__container" role="{{config.role|default("document")}}">
+        <div class="mdg-drawer__header">
+            <h2 class="mdg-drawer__title">{{config.title}}</h2>
+            <button class="mdg-drawer__close js-close-drawer" type="button" role="button">
+                <span class="dashicons dashicons-no menu-icon-close">&nbsp;</span>
+                <span class="mdg-drawer__close-text">{{ config.closeDrawerLabel|default('close')}}</span>
+            </button>
         </div>
-    </div>
-    <div class="mdg-drawer__footer">
-        {% set buttonConfig = {
-            "id": "button_test",
-            "class":"top",
-            "size":"m",
-            "level": "secondary",
-            "label": "ceci est un bouton",
-            "icon": {
-                "iconClass":"dashicons dashicons-calendar"
-            },
-            "otherAttributes" : {
-                "target": "_blank",
-                "data-test" : "test",
-                "disabled" : "true"
-            }
-        } %}
-        {{ button.mdg_button(buttonConfig) }}
+        <div class="mdg-drawer__body">
+            <div class="mdg-drawer__content">
+                    {{ content }}
+            </div>
+        </div>
+        {% if config.actions %}
+            <div class="mdg-drawer__footer">
+                {% for key, value in config.actions %}
+                    
+                    {% set buttonConfig = {
+                        "id": value.id,
+                        "class":value.class,
+                        "label": value.label,
+                        "otherAttributes" : value.otherAttributes
+                    } %}
+                    {{ button.mdg_button(buttonConfig) }}
+
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endmacro %}

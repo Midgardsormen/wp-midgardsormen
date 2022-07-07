@@ -26,7 +26,6 @@ export default class Overlay {
         } );
     }
     toggleOverlay(){
-        debugger;
         this.overlay.classList.toggle( 'active' );
         this.siteBody.classList.toggle( 'fixed' );
     }
