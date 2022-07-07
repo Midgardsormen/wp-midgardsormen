@@ -39,7 +39,7 @@ class MdgNavigationToggle {
 			this.cleanAllChildrenAttributes();
 			this.cleanAllSiblingsAttributes();
 			this.parentSiblings = this.getSiblings( this.getClosestParent( this.component ) );
-			if(this.component.classList.contains('mdg-main-navigation__open-btn"')) this.overlay.toggleOverlay();
+			if(this.component.classList.contains('mdg-main-navigation__open-btn')) this.overlay.toggleOverlay();
 		} );
 	}
 	getClosestParent( e, liOnly ) {
