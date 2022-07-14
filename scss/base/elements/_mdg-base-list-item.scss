@@ -1,0 +1,30 @@
+.mdg-base-item{
+    &__link{
+        text-decoration: none;
+        &:hover{
+            text-decoration: none;
+            opacity: 0.9;
+        }
+    }
+    &__img{
+        width: 100%;
+    }
+    &__title{
+        margin-top: 0;
+        text-decoration: none;
+        color: $mdg-color-1;
+        font-weight: 300;
+        @include mdg-font-size('xl', 'l');
+        overflow-wrap: break-word;
+        padding:  $bu-100 $bu-100 0;
+    }
+    &__article{
+        border: 1px solid $mdg-light-grey;
+        height: 100%;
+    }
+    &__content{
+        margin-top: 0;
+        box-sizing: border-box;
+        padding: $bu-100;
+    }
+}

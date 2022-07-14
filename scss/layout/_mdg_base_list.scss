@@ -1,0 +1,31 @@
+.mdg-base-list {
+
+    &__container{
+		display: grid;
+		grid-template-columns: 1fr;
+		padding: 0;
+		@include media(size-m) {
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+		@include media(size-l) {
+			margin:auto;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+		@include media(size-xl) {
+			gap: 20px;
+		}
+		@include media(size-xxl) {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+	}
+	&__item {
+		list-style: none;
+		width: calc(100% - 2px);
+		
+		margin-bottom: $bu-200;
+		&--padding-bottom{
+			padding-bottom: $bu-200;
+		}
+    }
+}
