@@ -1,0 +1,28 @@
+.mdg-section{
+    $sizes: xs $bu-100, s $bu-100, m $bu-150, l $bu-200, xl $bu-200, xxl $bu-250;
+    @each $size,$padding in $sizes {
+        @include media(size-#{$size}) {
+            padding-top: #{$padding};
+            padding-bottom: #{$padding};
+        }
+    }
+    &__top{
+        @import  './include/top';
+    }
+    &--background{
+        $sizes: xs, s, m, l, xl, xxl;
+        @each $size in $sizes {
+            @include media(size-#{$size}) {
+                $imgUrl: var(--mdg-section-bg-#{$size});
+                background-image: #{$imgUrl};
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+        .mdg-section__content{
+            padding: $bu-100;
+            background-color: rgba($mdg-white,0.7);
+        }
+    }
+}
