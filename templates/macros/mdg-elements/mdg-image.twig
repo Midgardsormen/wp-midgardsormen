@@ -1,0 +1,44 @@
+{% macro mdg_picture(config, breakpoints) %}
+
+{# config options : {
+    "src": "string" => img src",
+	"id": "string" => picture tag id",
+	"class": "string" => picture tag class",
+    "imgClass": "string" => img tag class",
+    "alt": ""string" => img alt"
+    "sizes" : {object} => object with srcsets and repectives media{
+        "xs": {
+                "media": "string" => media query corresponding to xs size, ex "(min-width: 280px)"",
+                "srcset": string" => "img src for xs devices"
+        },
+        "m": {
+                "media": "string" => media query corresponding to m size, ex "(min-width: 480px)"",
+                "srcset": string" => "img src for m devices"
+        },
+        etc...
+    }
+} #}
+{# "xs": { "media": "(max-width: 360px)", "srcset": post.thumbnail.src|resize(320, 320) },					
+"s": { "media": "(max-width: 480px)", "srcset": post.thumbnail.src|resize(1200, 300) },					
+"m": { "media": "(max-width: 1024px)", "srcset": post.thumbnail.src|resize(1200, 300) },					
+"l": { "media": "(max-width: 1280px)", "srcset": post.thumbnail.src|resize(1200, 300) },					
+"xl": { "media": "(max-width: 1640px)", "srcset": post.thumbnail.src|resize(1200, 300) },					
+"xxl": { "media": "(min-width: 1641px)", "srcset": post.thumbnail.src|resize(1980) } #}
+
+{# breakpoints : => array of objects with sizes and corresponding breakpoints (already in global varaibles) #}
+
+    <picture class="mdg-picture {{config.class}}" {% if config.id %} id="{{config.id}}" {% endif %}>
+        {% for size, srcset in config.sizes %}
+            {% set sourceMedia %}
+                {% if loop.last %}
+                    min-width: {{ breakpoints[size] + 1 }}px
+                {% else %}
+                    max-width: {{ breakpoints[size] }}px
+                {% endif %}
+            {% endset %}
+            <source srcset="{{srcset}}" media="({{sourceMedia|trim}})">
+        {% endfor %}
+        <img src="{{config.src}}" alt="{{config.alt}}" class="mdg-picture__img {{config.imgClass}}" />
+    </picture>
+{% endmacro %}
+
