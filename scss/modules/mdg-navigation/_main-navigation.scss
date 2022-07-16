@@ -9,6 +9,10 @@
         background-color: $bg-menu-button;
         border-color: $bg-menu-button-border;
         color: $color-menu-button;
+        padding-left: 0;
+        padding-right: 0;
+        width: $bu-300;
+        justify-content: center;
         @include media(size-l) {
             display: none;
         }        
