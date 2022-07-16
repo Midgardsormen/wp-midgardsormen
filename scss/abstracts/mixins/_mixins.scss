@@ -20,6 +20,28 @@
         line-height: 1.125;
     }
 }
+@mixin mdg-title-size( $sizevalue, $lineheightvalue  ) {
+    $sizes: 
+        "xs" $bu-150, 
+        "s" $bu-200, 
+        "m" $bu-250, 
+        "l" 1$bu-300, 
+        "xl" $bu-350,
+        "xxl" $bu-400;
+        
+    @each $size, $fontsize in $sizes {
+        @if $sizevalue == $size {
+            font-size: $fontsize;
+        }
+    }
+    @if $lineheightvalue == 's' {
+        line-height: 0.875;
+    } @else if $lineheightvalue == 'm' {
+        line-height: 1;
+    } @else if $lineheightvalue == 'l' {
+        line-height: 1.125;
+    }
+}
 
 @mixin mdg-container( $limited : false ) {
     -webkit-box-sizing: border-box;
