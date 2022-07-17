@@ -11,6 +11,11 @@ input[type="submit"],
         border-color: $bd-secondary-btn;
         color: $color-secondary-btn;
         background-color: $bg-secondary-btn;
+        &:hover, &:active {
+            border-color: $bd-secondary-btn-hover;
+            background-color: $bg-secondary-btn-hover;
+            color: $color-secondary-btn-hover;
+        } 
         &.mdg-button--bordered{
             border-color: $bd-secondary-bordered-btn;
             color: $color-secondary-bordered-btn;

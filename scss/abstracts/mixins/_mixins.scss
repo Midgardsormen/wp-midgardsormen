@@ -25,7 +25,7 @@
         "xs" $bu-150, 
         "s" $bu-200, 
         "m" $bu-250, 
-        "l" 1$bu-300, 
+        "l" $bu-300, 
         "xl" $bu-350,
         "xxl" $bu-400;
         
@@ -83,23 +83,27 @@
 	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
 
-@mixin mdg-button-base() {
+@mixin mdg-button-base($fontsize : 'm', $basePadding : $bu-050, $gap : $bu-050) {
     border: $bd-size-btn solid;
     border-color: $bd-primary-btn;
     border-radius: $bd-radius-btn;
     background: $bg-primary-btn;
     color: $color-primary-btn;
     line-height: 1;
-    padding: $bu-050 $bu-100 $bu-075;
     display: inline-flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: $bu-050;
-    @include mdg-font-size('m', 'l');
     cursor: pointer;
+    padding: #{$basePadding} calc(#{$basePadding} * 2) calc(#{$basePadding} + #{$bu-025});
+    gap: #{$gap};
+    @include mdg-font-size(#{$fontsize}, 'l');
+    .mdg-button__icon{
+        @include mdg-font-size(#{$fontsize}, 'l');
+    }
+
     &:hover, &:active {
-        border-color: $bd-secondary-btn;
-        background: $bg-secondary-btn;
-        color: $color-secondary-btn;
+        border-color: $bd-primary-btn-hover;
+        background: $bg-primary-btn-hover;
+        color: $color-primary-btn-hover;
     }
 }
