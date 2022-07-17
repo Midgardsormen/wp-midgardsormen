@@ -56,7 +56,7 @@
         padding: $bu-500 $bu-100 $bu-150;
         background-color: $bg-menu;
         top: 0;
-        height: calc(100% - 40px);
+        height: 100%;
         z-index: 3;
         transition: visibility .3s 0s,-webkit-transform .3s cubic-bezier(.77,.2,.05,1);
         overflow: hidden auto;
@@ -71,6 +71,7 @@
             max-width: none;
             background-color: $bg-menu;
             overflow: visible;
+            z-index: 0;
             &--horizontal {
                 .mdg-main-navigation{
                     &__list {
@@ -156,6 +157,7 @@
         }
         .customize-support &{
             top: 40px;
+            height: calc(100% - 40px);
             @include media(size-l) {
                 top: 0;
             }
