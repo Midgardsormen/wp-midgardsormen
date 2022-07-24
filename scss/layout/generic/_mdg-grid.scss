@@ -24,7 +24,7 @@
     @each $size in $sizes {
         @include media(size-#{$size}) {
             .mdg-grid-col-start-#{$size}-#{$i} {
-                grid-column-end: span #{$i}
+                grid-column-start: grid-col-#{$i}-start
             }
         }
     }

@@ -1,44 +1,52 @@
 {% macro mdg_base_list_item(config) %}
-{% import "/templates/macros/common/mdg-elements/mdg-image.twig" as picture %}
+    {% import "/templates/macros/common/mdg-elements/mdg-image.twig" as picture %}
 
-{# config options : {
-    "url": "string" => item link",
-	"class": "string" => item article class",
-	"description": "string" => item description",
-	"title": "string" => item title",
-	"titleTag": "string" => item title html tag (default h2)",
-    "img": {object} => object with img src and alt datas{
-        "src": "string" => item image src attribute",
-        "alt": "string" => item image alt attribute"
-    }
-} #}
+    {# config options : {
+        "direction" : "string" => item direction 'column' or 'row' (default column),
+        "format" : "string" => item format 'light' or 'full' (default full),
+        "url": "string" => item link",
+        "class": "string" => item article class",
+        "description": "string" => item description",
+        "title": "string" => item title",
+        "titleTag": "string" => item title html tag (default h2)",
+        "img": {object} => object with img src and alt datas{
+            "src": "string" => item image src attribute",
+            "alt": "string" => item image alt attribute"
+        }
+    } #}
 
-{% if config.url %}
-    <a class="mdg-base-item__link" href="{{ config.url }}" >
-{% endif %}
-    <article class="mdg-base-item__article {{ config.class }}">
-        <div>
-            {% set baseItemImg = config.img %}
-          {{ picture.mdg_picture({
-            "src":  baseItemImg.src ,
-            "alt":  baseItemImg.alt ,
-            "class" :"mdg-base-item__picture" ,
-            "imgClass" :"mdg-base-item__img" ,
-            "sizes" : {
-              "s": baseItemImg.src |resize(320, 220),					
-              "m": baseItemImg.src |resize(330, 220),					
-              "l": baseItemImg.src |resize(200, 120),					
-              "xl": baseItemImg.src |resize(240, 160),					
-              "xxl": baseItemImg.src |resize(340, 225)					
-          }}, mdg_breakpoints) }}
-        </div>
-        <{{ config.titleTag|default('h2') }} class="mdg-base-item__title"> {{ config.title }}</{{ config.titleTag|default('h2')  }}>
-        <div class="mdg-base-item__content">
-          {{ config.description|truncate(30)|default('')  }}
-        </div>
-    </article>
-{% if config.url %}
-    </a>
-{% endif %}
+    {% if config.url %}
+        <a class="mdg-base-item__link" href="{{ config.url }}" >
+    {% endif %}
+        <article class="mdg-base-item__article mdg-base-item__article--{{ config.direction|default('column') }} mdg-base-item__article--{{ config.format|default('full') }} {{ config.class }}">
+            <div>
+                {% set baseItemImg = config.img %}
+                {% if config.format == 'full'%}
+                    {{ picture.mdg_picture({
+                        "src":  baseItemImg.src ,
+                        "alt":  baseItemImg.alt ,
+                        "class" :"mdg-base-item__picture" ,
+                        "imgClass" :"mdg-base-item__img" ,
+                        "sizes" : {
+                        "s": baseItemImg.src |resize(320, 220),					
+                        "m": baseItemImg.src |resize(330, 220),					
+                        "l": baseItemImg.src |resize(200, 120),					
+                        "xl": baseItemImg.src |resize(240, 160),					
+                        "xxl": baseItemImg.src |resize(340, 225)					
+                    }}, mdg_breakpoints) }}
+                {% else %}
+                    <img src="{{ baseItemImg.src|resize(80, 80) }}" alt="{{ baseItemImg.alt }}" class="mdg-base-item__img" />
+                {% endif %}
+            </div>
+            <{{ config.titleTag|default('h2') }} class="mdg-base-item__title"> {{ config.title }}</{{ config.titleTag|default('h2')  }}>
+            {% if config.format != 'light'%}
+                <div class="mdg-base-item__content">
+                {{ config.description|truncate(30)|default('')  }}
+                </div>
+            {% endif %}
+        </article>
+    {% if config.url %}
+        </a>
+    {% endif %}
 
 {% endmacro %}

@@ -7,7 +7,8 @@
     "title": "string" => drawer title label",
 	"id": "string" => drawer id",
 	"class": "string" => drawer class",
-    "role": ""string" => drawer aria role"
+    "role": ""string" => drawer aria role",
+    "noBodyPadding": "boolean" => true if body and content has no automatic padding, false set padding on body and content (default false)"
     "actions" : {object} => object with buttons config...{
         "cta-1": {
                 "label": "string" => button label",
@@ -45,8 +46,10 @@
                 <span class="mdg-drawer__close-text">{{ config.closeDrawerLabel|default('close')}}</span>
             </button>
         </div>
-        <div class="mdg-drawer__body">
-            <div class="mdg-drawer__content">
+
+        {% set bodyPaddingClass = config.noBodyPadding == true ? 'no-padding' : 'set-padding' %}
+        <div class="mdg-drawer__body mdg-drawer__body--{{ bodyPaddingClass }}">
+            <div class="mdg-drawer__content mdg-drawer__content--{{ bodyPaddingClass }}">
                     {{ content }}
             </div>
         </div>

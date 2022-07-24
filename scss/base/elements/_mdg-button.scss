@@ -40,10 +40,7 @@ input[type="submit"],
     }
 }
 
-.is-style-outline .wp-block-button__link, 
-.is-style-outline .wp-block-button__link:not(.has-background), 
-.is-style-outline .wp-block-button__link:not(.has-text-color), 
-.mdg-button--bordered{
+@mixin button-bordered() {
     border-color: $bd-primary-bordered-btn;
     background-color: $bg-primary-bordered-btn;
     color: $color-primary-bordered-btn;
@@ -52,5 +49,21 @@ input[type="submit"],
         background-color: $bg-primary-bordered-btn-hover;
         color: $color-primary-bordered-btn-hover;
     }
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.mdg-button,
+.wp-block-button__link{
+    &.mdg-button--bordered{
+       @include button-bordered()
+    }
+}
+.is-style-outline .wp-block-button__link, 
+.is-style-outline .wp-block-button__link:not(.has-background), 
+.is-style-outline .wp-block-button__link:not(.has-text-color), 
+.mdg-button--bordered{
+    @include button-bordered()
 }
 
