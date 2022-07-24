@@ -112,9 +112,6 @@
                         position: relative;
                         top: auto;
                         right: auto;
-                        background-color: $bg-menu-toggle;
-                        border-color: $bg-menu-toggle-border;
-                        color: $color-menu-toggle;
                     }
                     &__sub-menu{
                         left: 0;
@@ -206,6 +203,9 @@
             top: 0;
             padding: $bu-025;
             transition: visibility .3s 0s,-webkit-transform .3s cubic-bezier(.77,.2,.05,1);
+            background-color: $bg-menu-toggle;
+            border-color: $bg-menu-toggle-border;
+            color: $color-menu-toggle;
             &.active{
                 transform: rotate(180deg);
                 background-color: $bg-menu-toggle-active;
